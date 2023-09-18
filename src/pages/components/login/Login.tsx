@@ -10,7 +10,6 @@ import { useState } from "react";
 export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  // const anchorOrigin = { vertical: "top", horizontal: "center" };
 
   const handleOpen = () => {
     setIsOpen(true);
