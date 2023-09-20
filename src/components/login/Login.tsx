@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { UserCredential, signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../../lib/firebase/firebase";
+import { auth, provider } from "../../lib/firebase/firebase";
 import loginStyles from "./Login.module.scss";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
