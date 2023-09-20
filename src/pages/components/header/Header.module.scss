@@ -1,0 +1,21 @@
+.header {
+  height: 60px;
+  width: 100%;
+  background-color: gray;
+
+  .signOut {
+    height: 100%;
+
+    Button {
+      width: 200px;
+      height: 100%;
+      font-weight: bold;
+      background-color: #738adb;
+      color: white;
+      &:hover {
+        background-color: black;
+        color: #738adb;
+      }
+    }
+  }
+}
