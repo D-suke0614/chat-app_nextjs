@@ -6,6 +6,7 @@ import utilsStyle from "../styles/utils.module.scss";
 
 export default function Home() {
   const { user } = useAuthContext();
+  console.log(user);
   return (
     <>
       <Header />
