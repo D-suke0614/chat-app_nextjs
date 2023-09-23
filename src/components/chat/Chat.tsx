@@ -6,27 +6,22 @@ import { getDatabase, push, ref, onChildAdded } from "firebase/database";
 import { FirebaseError } from "firebase/app";
 import { useAuthContext } from "@/feature/auth/provider/AuthProvider";
 
+type chatType = {
+  chatData: {
+    message: string;
+    timestamp: string;
+    userInfo: {
+      name: string;
+      icon: string;
+      uid: string;
+    };
+  };
+};
+
 function Chat() {
   const [message, setMessage] = useState("");
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState<chatType[]>([]);
   const { user } = useAuthContext();
-
-  useEffect(() => {
-    try {
-      const db = getDatabase();
-      const dbRef = ref(db, "chat");
-      return onChildAdded(dbRef, (snapshot) => {
-        const chatData = snapshot.val() ?? {};
-        console.log("fetch chatData", chatData);
-        setChats(chatData);
-      });
-    } catch (e) {
-      if (e instanceof FirebaseError) {
-        console.error(e);
-      }
-      return;
-    }
-  }, []);
 
   const sendMessage = async () => {
     if (!message) return;
@@ -55,27 +50,32 @@ function Chat() {
     }
   };
 
+  useEffect(() => {
+    try {
+      const db = getDatabase();
+      const dbRef = ref(db, "chat");
+      return onChildAdded(dbRef, (snapshot) => {
+        const chatData = snapshot.val() ?? {};
+        console.log(chatData);
+        setChats((preValue) => [...preValue, chatData]);
+      });
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        console.error(e);
+      }
+      return;
+    }
+  }, []);
+
   return (
     <div className={chatStyle.chat}>
       <div className={chatStyle.chatContainer}>
         {/* chatを表示する */}
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
+        {chats.map((chat: chatType, index: number) => (
+          <ChatMessage chat={chat} key={index} />
+        ))}
       </div>
-      <div
-        className={chatStyle.chatInput}
-        // sx={{
-        //   width: 500,
-        //   maxWidth: "100%",
-        // }}
-      >
+      <div className={chatStyle.chatInput}>
         <TextField
           fullWidth
           size="small"
