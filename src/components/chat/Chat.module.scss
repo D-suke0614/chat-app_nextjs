@@ -1,17 +1,17 @@
 .chat {
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .chatContainer {
     height: 90%;
+    width: 60%;
     overflow: scroll;
   }
 
   .chatInput {
-    width: 500px;
+    width: 60%;
     display: flex;
     justify-content: space-between;
     align-items: center;
