@@ -1,17 +1,34 @@
 import React from "react";
 import { Avatar } from "@mui/material";
 import chatMessageStyle from "./ChatMessage.module.scss";
+import Image from "next/image";
 
-function ChatMessage() {
+interface Props {
+  chat: {
+    chatData: {
+      message: string;
+      timestamp: string;
+      userInfo: {
+        name: string;
+        icon: string;
+        uid: string;
+      };
+    };
+  };
+}
+
+function ChatMessage({ chat }: Props) {
+  const { message, timestamp, userInfo } = chat.chatData;
+  console.log("chat", chat);
   return (
     <div className={chatMessageStyle.message}>
       <Avatar />
       <div className={chatMessageStyle.messageInfo}>
         <h4>
-          D.suke
-          <span className={chatMessageStyle.timeStamp}>2023-09-21</span>
+          {userInfo?.name}
+          <span className={chatMessageStyle.timeStamp}>{timestamp}</span>
         </h4>
-        <p>チャットメッセージです。テストテストテスト</p>
+        <p>{message}</p>
       </div>
     </div>
   );
