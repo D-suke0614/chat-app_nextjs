@@ -1,5 +1,4 @@
-import React from "react";
-import { Avatar } from "@mui/material";
+import React, { useState } from "react";
 import chatMessageStyle from "./ChatMessage.module.scss";
 import Image from "next/image";
 import { useAuthContext } from "@/feature/auth/provider/AuthProvider";
@@ -16,27 +15,33 @@ interface Props {
       };
     };
   };
+  index: number | undefined;
 }
 
-function ChatMessage({ chat }: Props) {
+function ChatMessage({ chat, index }: Props) {
   const { message, timestamp, userInfo } = chat.chatData;
   const { user } = useAuthContext();
+  const [isMouseOver, setIsMouseOver] = useState(false);
   console.log("chat", chat);
   console.log("user", user);
+  console.log("index", index);
   return (
     <>
       {user?.uid === userInfo?.uid ? (
-        <div className={chatMessageStyle.message}>
+        <div className={`${chatMessageStyle.message} message-${index}`}>
           <div className={chatMessageStyle.messageInfoRight}>
             <h4>
               {userInfo?.name}
               <span className={chatMessageStyle.timeStamp}>{timestamp}</span>
             </h4>
-            <p>{message}</p>
+            <p className={chatMessageStyle.rightMessage}>{message}</p>
           </div>
         </div>
       ) : (
-        <div className={chatMessageStyle.message}>
+        <div
+          className={`${chatMessageStyle.message} message-${index}`}
+          onMouseEnter={() => setIsMouseOver(true)}
+        >
           <Image
             className={chatMessageStyle.userIcon}
             src={userInfo?.icon}
@@ -49,7 +54,7 @@ function ChatMessage({ chat }: Props) {
               {userInfo?.name}
               <span className={chatMessageStyle.timeStamp}>{timestamp}</span>
             </h4>
-            <p>{message}</p>
+            <p className={chatMessageStyle.leftMessage}>{message}</p>
           </div>
         </div>
       )}

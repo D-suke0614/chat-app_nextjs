@@ -25,7 +25,6 @@ function Chat() {
 
   const sendMessage = async () => {
     if (!message) return;
-    console.log("message", message);
     try {
       const db = getDatabase();
       const dbRef = ref(db, "chat");
@@ -38,7 +37,6 @@ function Chat() {
           uid: user?.uid,
         },
       };
-      console.log("chatData", chatData);
       await push(dbRef, {
         chatData,
       });
@@ -56,7 +54,6 @@ function Chat() {
       const dbRef = ref(db, "chat");
       return onChildAdded(dbRef, (snapshot) => {
         const chatData = snapshot.val() ?? {};
-        console.log(chatData);
         setChats((preValue) => [...preValue, chatData]);
       });
     } catch (e) {
@@ -72,14 +69,16 @@ function Chat() {
       <div className={chatStyle.chatContainer}>
         {/* chatを表示する */}
         {chats.map((chat: chatType, index: number) => (
-          <ChatMessage chat={chat} key={index} />
+          <ChatMessage chat={chat} index={index} key={index} />
         ))}
       </div>
+
       <div className={chatStyle.chatInput}>
         <TextField
           fullWidth
           size="small"
           value={message}
+          placeholder="メッセージを入力"
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === "Enter") {

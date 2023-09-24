@@ -1,7 +1,9 @@
 .header {
   height: 8vh;
   width: 100%;
-  background-color: gray;
+  background-color: #54c9bc;
+  display: flex;
+  align-items: center;
 
   .signOut {
     height: 100%;
@@ -17,5 +19,27 @@
         color: #738adb;
       }
     }
+  }
+
+  .headerInfo {
+    display: flex;
+    align-items: center;
+    margin-left:4px;
+    padding: 4px;
+    &:hover{
+      cursor: pointer;
+      background-color: #1a9789;
+      border-radius: 5px;
+    }
+  }
+
+  .userIcon {
+    border-radius: 50%;
+    margin-left: 8px;
+  }
+
+  .userName {
+    margin-left: 8px;
+    font-size: smaller;
   }
 }
