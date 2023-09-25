@@ -8,8 +8,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 
 export default function Login() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -45,6 +45,10 @@ export default function Login() {
 
   return (
     <>
+      <div className={loginStyles.introContainer}>
+        <p className={loginStyles.introText}>Welcome to Chat app</p>
+        <p>Login with your Google Account</p>
+      </div>
       <div className={loginStyles.login}>
         <Button onClick={signIn}>ログイン</Button>
       </div>

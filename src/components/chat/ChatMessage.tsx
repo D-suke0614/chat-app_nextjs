@@ -21,7 +21,7 @@ interface Props {
 function ChatMessage({ chat, index }: Props) {
   const { message, timestamp, userInfo } = chat.chatData;
   const { user } = useAuthContext();
-  const [isMouseOver, setIsMouseOver] = useState(false);
+
   return (
     <>
       {user?.uid === userInfo?.uid ? (
@@ -35,10 +35,7 @@ function ChatMessage({ chat, index }: Props) {
           </div>
         </div>
       ) : (
-        <div
-          className={`${chatMessageStyle.message} message-${index}`}
-          onMouseEnter={() => setIsMouseOver(true)}
-        >
+        <div className={`${chatMessageStyle.message} message-${index}`}>
           <Image
             className={chatMessageStyle.userIcon}
             src={userInfo?.icon}
