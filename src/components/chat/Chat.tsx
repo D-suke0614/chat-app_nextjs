@@ -19,7 +19,7 @@ type chatType = {
 };
 
 function Chat() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>("");
   const [chats, setChats] = useState<chatType[]>([]);
   const { user } = useAuthContext();
 
