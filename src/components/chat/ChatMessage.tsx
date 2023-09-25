@@ -22,9 +22,6 @@ function ChatMessage({ chat, index }: Props) {
   const { message, timestamp, userInfo } = chat.chatData;
   const { user } = useAuthContext();
   const [isMouseOver, setIsMouseOver] = useState(false);
-  console.log("chat", chat);
-  console.log("user", user);
-  console.log("index", index);
   return (
     <>
       {user?.uid === userInfo?.uid ? (
