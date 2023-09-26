@@ -30,7 +30,7 @@ function Chat() {
       const dbRef = ref(db, "chat");
       const chatData = {
         message: message,
-        timestamp: "2023-09-24 15:00:00",
+        timestamp: new Date().toLocaleString(),
         userInfo: {
           name: user?.displayName,
           icon: user?.photoURL,
