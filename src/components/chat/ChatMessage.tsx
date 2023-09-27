@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import chatMessageStyle from "./ChatMessage.module.scss";
 import Image from "next/image";
 import { useAuthContext } from "@/feature/auth/provider/AuthProvider";
