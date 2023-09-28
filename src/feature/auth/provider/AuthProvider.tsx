@@ -35,6 +35,9 @@ export const AuthProvider = ({ children }: props) => {
         setUser({
           user,
         });
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(user));
+        }
       });
     } catch {
       setUser(initialState);
