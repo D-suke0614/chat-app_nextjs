@@ -10,7 +10,10 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className={utilsStyle.chatApp}>
+      <div
+        className={utilsStyle.chatApp}
+        style={user ? {} : { flexDirection: "column" }}
+      >
         {user ? (
           <>
             <Sidebar /> <Chat />
