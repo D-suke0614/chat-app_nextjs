@@ -34,6 +34,9 @@ function Sidebar() {
 
           <div className={sidebarStyle.sidebarChannelList}>
             <SidebarChannel />
+            <SidebarChannel />
+            <SidebarChannel />
+            <SidebarChannel />
           </div>
         </div>
 

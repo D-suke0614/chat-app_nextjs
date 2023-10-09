@@ -3,11 +3,10 @@
   margin-top: 2px;
 
   h4 {
-    color: #7b7c85;
+    // color: #7b7c85;
     display: flex;
     align-items: center;
     padding: 5px;
-    font-size: 1.1rem;
     cursor: pointer;
 
     &:hover {
@@ -18,7 +17,7 @@
   }
 
   .sidebarChannelHash {
-    font-size: 22px;
-    padding-right: 8px;
+    font-size: 20px;
+    padding-right: 4px;
   }
 }
